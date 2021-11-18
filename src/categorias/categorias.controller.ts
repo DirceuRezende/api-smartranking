@@ -3,15 +3,15 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   UsePipes,
   ValidationPipe,
+  Put,
 } from '@nestjs/common';
 import { CategoriasService } from './categorias.service';
 import { CriarCategoriaDto } from './dto/criar-categoria.dto';
-import { UpdateCategoriaDto } from './dto/update-categoria.dto';
+import { AtualizarCategoriaDto } from './dto/atualizar-categoria.dto';
 import { Categoria } from './interfaces/categoria.interface';
 
 @Controller('api/v1/categorias')
@@ -38,12 +38,21 @@ export class CategoriasController {
     return this.categoriasService.consultarCategoriaPeloId(_id);
   }
 
-  @Patch(':_id')
-  update(
-    @Param('id') id: string,
-    @Body() updateCategoriaDto: UpdateCategoriaDto,
-  ) {
-    return this.categoriasService.update(+id, updateCategoriaDto);
+  @Put(':_id')
+  async atualizarCategoria(
+    @Param('_id') _id: string,
+    @Body() updateCategoriaDto: AtualizarCategoriaDto,
+  ): Promise<void> {
+    console.log(updateCategoriaDto);
+    await this.categoriasService.atualizarCategoria(_id, updateCategoriaDto);
+  }
+
+  @Post(':_id/jogadores/:_idJogador')
+  async atribuirCategoriaJogador(
+    @Param('_id') _id,
+    @Param('_idJogador') _idJogador,
+  ): Promise<void> {
+    await this.categoriasService.atribuirCategoriaJogador(_id, _idJogador);
   }
 
   @Delete(':_id')
