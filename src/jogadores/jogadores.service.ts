@@ -58,7 +58,7 @@ export class JogadoresService {
     return await this.jogadorModel.deleteOne({ _id }).exec();
   }
 
-  async consultaTodosJogadores(): Promise<Jogador[]> {
+  async consultarTodosJogadores(): Promise<Jogador[]> {
     return await this.jogadorModel.find().exec();
   }
 }

@@ -8,6 +8,7 @@ import {
   UsePipes,
   ValidationPipe,
   Put,
+  Query,
 } from '@nestjs/common';
 import { CategoriasService } from './categorias.service';
 import { CriarCategoriaDto } from './dto/criar-categoria.dto';
@@ -27,7 +28,22 @@ export class CategoriasController {
   }
 
   @Get()
-  async consultarCategorias(): Promise<Array<Categoria>> {
+  async consultarCategorias(
+    @Query() params: string[],
+  ): Promise<Array<Categoria> | Categoria> {
+    const idCategoria = params['idCategoria'];
+    const idJogador = params['idJogador'];
+
+    if (idCategoria) {
+      return await this.categoriasService.consultarCategoriaPeloId(idCategoria);
+    }
+
+    if (idJogador) {
+      return await this.categoriasService.consultarCategoriaDoJogador(
+        idJogador,
+      );
+    }
+
     return await this.categoriasService.consultarTodasCategorias();
   }
 

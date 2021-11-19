@@ -40,7 +40,7 @@ export class JogadoresController {
 
   @Get()
   async consultarJogadores(): Promise<Jogador[]> {
-    return this.jogadoresService.consultaTodosJogadores();
+    return this.jogadoresService.consultarTodosJogadores();
   }
 
   @Get('/:_id')
