@@ -8,7 +8,7 @@ export class ValidacaoParametrosPipe implements PipeTransform {
   transform(value: any, metadata: ArgumentMetadata) {
     if (!value) {
       throw new BadRequestException(
-        `O valor do paramtro ${metadata.data} deve ser informado`,
+        `O valor do parametro ${metadata.data} deve ser informado`,
       );
     }
     return value;

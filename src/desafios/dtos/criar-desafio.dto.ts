@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsDate, IsArray, ArrayMinSize, ArrayMaxSize, IsDateString } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsArray,
+  ArrayMinSize,
+  ArrayMaxSize,
+  IsDateString,
+} from 'class-validator';
 import { Jogador } from 'src/jogadores/interfaces/jogador.interface';
 
 export class CriarDesafioDto {
@@ -12,7 +18,5 @@ export class CriarDesafioDto {
   @IsArray()
   @ArrayMinSize(2)
   @ArrayMaxSize(2)
-  jogadores: Array<Jogador>
-
-
+  jogadores: Array<Jogador>;
 }
